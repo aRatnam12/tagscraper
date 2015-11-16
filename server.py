@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from lxml import html
 import requests
 app = Flask(__name__)
