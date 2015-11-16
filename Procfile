@@ -1,1 +1,1 @@
-web: gunicorn tagscraper:app
+web: gunicorn server:app
