@@ -25,6 +25,18 @@ $(document).ready(function() {
         console.log(xhr, ajaxOptions, thrownError);
       }
     });
+    $.ajax({
+      url: "/source/",
+      type: "POST",
+      data: {url: $webpage},
+      dataType: "html",
+      success: function (result) {
+        var src = $('<p>', {text: result}).appendTo('#sourcePanel');
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(xhr, ajaxOptions, thrownError);
+      }
+    });
   });
   
   $(document).on('click', 'a' , function(event) {

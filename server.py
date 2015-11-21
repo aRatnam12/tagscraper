@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request
 from lxml import html
 from flask import jsonify
+import urllib2
 import requests
 import os
 
@@ -21,16 +22,15 @@ def scrapeUrl():
   getTags(tree, tags)
   print(tags)
   return jsonify(tags)
-  # for el in tree:
-  #   print el.tag
-  #   for el2 in el:
-  #       print el2.tag
-  # return ''
-  # return tree
 
-@app.route('/source',  methods =['POST'])
+@app.route('/source/',  methods =['POST'])
 def getPageSource():
-  return ''
+  user_agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.63 Safari/534.3'
+  headers = { 'User-Agent' : user_agent }
+  req = urllib2.Request(request.form['url'], None, headers)
+  response = urllib2.urlopen(req)
+  page = response.read()
+  return page
 
 def getTags(tree, tags):
   for el in tree:
